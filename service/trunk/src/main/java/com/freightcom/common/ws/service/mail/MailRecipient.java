@@ -6,6 +6,9 @@ public class MailRecipient {
 	private String email;
 	private String name;
 	
+	public MailRecipient() {
+	}
+	
 	public MailRecipient(String email, String name) {
 		super();
 		this.email = email;
