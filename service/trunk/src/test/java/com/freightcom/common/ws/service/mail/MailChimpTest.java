@@ -33,6 +33,7 @@ public class MailChimpTest {
 	}
 	
 	@Test
+	@Ignore
 	public void addMemberToList() {
 		try {
 			MailChimpList mailChimpList = mailChimpConnection.getList("e0820f1c2d");

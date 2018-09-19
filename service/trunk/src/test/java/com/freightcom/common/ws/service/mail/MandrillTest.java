@@ -25,6 +25,7 @@ public class MandrillTest {
 	}
 	
 	@Test
+	@Ignore
 	public void sendTemplateEmail() {
 		/*Map<String,String> templateContent = new HashMap<>();
 		templateContent.put("name", "Ravi Narine");*/
