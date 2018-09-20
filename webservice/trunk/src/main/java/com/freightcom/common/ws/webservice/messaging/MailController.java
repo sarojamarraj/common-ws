@@ -1,18 +1,38 @@
 package com.freightcom.common.ws.webservice.messaging;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.jms.JmsException;
+import org.springframework.jms.core.JmsTemplate;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * 
+ * @author rnarine
+ *
+ */
 @RestController
 @RequestMapping(path="/api/mail")
 public class MailController {
+	private static final String MAIL_QUEUE = "freightcom-mail";
+	
+	@Autowired
+	private JmsTemplate jmsTemplate;
+	
 	@RequestMapping(path="/send" , method=RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> test() {
-		ResponseEntity<String> re = new ResponseEntity<String>("hello", HttpStatus.OK);
+	public ResponseEntity<?> send(@RequestBody String mailRequest) {
+		ResponseEntity<?> re = null;
+		try {
+			jmsTemplate.convertAndSend(MAIL_QUEUE, mailRequest);
+			re = new ResponseEntity<Void>(HttpStatus.OK);
+		} catch (JmsException e) {
+			re = new ResponseEntity<String>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 		return re;
 	}
 }
