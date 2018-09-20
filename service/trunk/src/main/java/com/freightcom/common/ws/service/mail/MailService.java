@@ -5,9 +5,10 @@ import java.io.IOException;
 import com.microtripit.mandrillapp.lutung.model.MandrillApiError;
 
 /**
- * 
+ * Service for email
  * @author rnarine
- *
+ * @version 1.0
+ * @since 1.0
  */
 public interface MailService {
 	/**
