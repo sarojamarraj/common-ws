@@ -1,6 +1,7 @@
 package com.freightcom.common.ws.webservice.messaging;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(path="/api/mail")
 public class MailController {
-	private static final String MAIL_QUEUE = "freightcom-mail";
+	@Value("${mail.queue}")
+	private String mailQueue;
 	
 	@Autowired
 	private JmsTemplate jmsTemplate;
@@ -28,7 +30,7 @@ public class MailController {
 	public ResponseEntity<?> send(@RequestBody String mailRequest) {
 		ResponseEntity<?> re = null;
 		try {
-			jmsTemplate.convertAndSend(MAIL_QUEUE, mailRequest);
+			jmsTemplate.convertAndSend(mailQueue, mailRequest);
 			re = new ResponseEntity<Void>(HttpStatus.OK);
 		} catch (JmsException e) {
 			re = new ResponseEntity<String>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
