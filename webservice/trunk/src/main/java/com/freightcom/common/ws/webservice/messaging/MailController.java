@@ -1,5 +1,7 @@
 package com.freightcom.common.ws.webservice.messaging;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -20,6 +22,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(path="/api/mail")
 public class MailController {
+	private Log logger = LogFactory.getLog(this.getClass());
+	
 	@Value("${mail.queue}")
 	private String mailQueue;
 	
@@ -33,6 +37,7 @@ public class MailController {
 			jmsTemplate.convertAndSend(mailQueue, mailRequest);
 			re = new ResponseEntity<Void>(HttpStatus.OK);
 		} catch (JmsException e) {
+			logger.error("Error Registrating user in Freightcom:",e);
 			re = new ResponseEntity<String>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		return re;
