@@ -37,7 +37,7 @@ public class MailController {
 			jmsTemplate.convertAndSend(mailQueue, mailRequest);
 			re = new ResponseEntity<Void>(HttpStatus.OK);
 		} catch (JmsException e) {
-			logger.error("Error Registrating user in Freightcom:",e);
+			logger.error("Error adding email to queue:",e);
 			re = new ResponseEntity<String>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		return re;
