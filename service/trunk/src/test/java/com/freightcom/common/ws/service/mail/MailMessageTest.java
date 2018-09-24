@@ -5,7 +5,6 @@ import org.junit.Test;
 
 public class MailMessageTest extends BaseMailMessageTest {
 	@Test
-	@Ignore
 	public void unmarshallSendMailRequest() {
 		MailRequest mailRequest = createSendMailRequest();
 		System.out.println(mailRequest);
@@ -20,7 +19,6 @@ public class MailMessageTest extends BaseMailMessageTest {
 	}
 	
 	@Test
-	@Ignore
 	public void marshallSendMailRequest() {
 		try {
 			String s = toJSON(createSendMailRequest());
