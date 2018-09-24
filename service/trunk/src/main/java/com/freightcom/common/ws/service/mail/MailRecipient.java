@@ -15,6 +15,11 @@ public class MailRecipient {
 		this.name = name;
 	}
 	
+	public MailRecipient(String email) {
+		super();
+		this.email = email;
+	}
+	
 	public String getEmail() {
 		return email;
 	}
