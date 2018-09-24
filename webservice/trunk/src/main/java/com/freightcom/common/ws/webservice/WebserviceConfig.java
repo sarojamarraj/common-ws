@@ -1,8 +1,9 @@
-package com.freightcom.common.ws.webservice.config;
+package com.freightcom.common.ws.webservice;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
@@ -14,6 +15,7 @@ import org.springframework.jms.core.JmsTemplate;
 	@PropertySource(value="classpath:queue-overrides.properties",ignoreResourceNotFound=true)
 })
 @Configuration
+@ComponentScan({ "com.freightcom.common.ws.webservice" })
 public class WebserviceConfig {
 	@Value("${activemq.broker-url}")
 	private String brokerUrl;
