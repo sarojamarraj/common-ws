@@ -2,6 +2,8 @@ package com.freightcom.common.ws.service.mail;
 
 import java.io.IOException;
 
+import com.freightcom.common.dto.mail.AddToList;
+import com.freightcom.common.dto.mail.SendMail;
 import com.microtripit.mandrillapp.lutung.model.MandrillApiError;
 
 /**

@@ -8,27 +8,33 @@ import org.apache.commons.logging.LogFactory;
 import org.joda.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.PropertySources;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.freightcom.common.dto.mail.MailRecipient;
+import com.freightcom.common.dto.mail.MailRequest;
+import com.freightcom.common.dto.mail.SendMail;
 import com.freightcom.common.model.user.User;
 import com.freightcom.common.model.user.VerificationToken;
 import com.freightcom.common.ws.dao.user.UserRepository;
 import com.freightcom.common.ws.dao.user.VerificationTokenRepository;
-import com.freightcom.common.ws.service.mail.MailRecipient;
-import com.freightcom.common.ws.service.mail.MailRequest;
-import com.freightcom.common.ws.service.mail.SendMail;
 import com.freightcom.common.ws.service.user.UserService;
 
+@PropertySources({
+	@PropertySource(value="classpath:queue.properties"),
+	@PropertySource(value="classpath:queue-overrides.properties",ignoreResourceNotFound=true)
+})
 @Service
 @Transactional(readOnly=true)
 public class UserServiceImpl implements UserService {
 	private final transient Log log = LogFactory.getLog(getClass());
 
-	@Value("${validation.email.expiry}")
-	private int expiryTimeInMinutes; 
+	//@Value("${validation.email.expiry}")
+	private int expiryTimeInMinutes = 2880; 
 	
 	@Autowired
 	private UserRepository userRepository;
