@@ -8,11 +8,7 @@
 	</properties>
 	
 	<dependencies>
-		<dependency>
-    		<groupId>com.mandrillapp.wrapper.lutung</groupId>
-    		<artifactId>lutung</artifactId>
-    		<version>0.0.8</version>
-		</dependency>
+		
 		<dependency>
     		<groupId>junit</groupId>
     		<artifactId>junit</artifactId>
@@ -49,11 +45,7 @@
     		<artifactId>commons-collections4</artifactId>
     		<version>4.2</version>
 		</dependency>
-		<dependency>
-    		<groupId>com.github.alexanderwe</groupId>
-    		<artifactId>bananaj</artifactId>
-    		<version>1.2.5-alpha</version>
-		</dependency>
+		
 		<dependency>
 			<groupId>com.freightcom.common.ws</groupId>
   			<artifactId>dao</artifactId>
