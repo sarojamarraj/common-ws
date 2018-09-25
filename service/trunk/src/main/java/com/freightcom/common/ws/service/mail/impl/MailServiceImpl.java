@@ -11,11 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.freightcom.common.ws.service.KeyValue;
-import com.freightcom.common.ws.service.mail.AddToList;
-import com.freightcom.common.ws.service.mail.MailRecipient;
+import com.freightcom.common.dto.KeyValue;
+import com.freightcom.common.dto.mail.AddToList;
+import com.freightcom.common.dto.mail.MailRecipient;
+import com.freightcom.common.dto.mail.SendMail;
 import com.freightcom.common.ws.service.mail.MailService;
-import com.freightcom.common.ws.service.mail.SendMail;
 import com.github.alexanderwe.bananaj.connection.MailChimpConnection;
 import com.github.alexanderwe.bananaj.model.list.MailChimpList;
 import com.github.alexanderwe.bananaj.model.list.member.MemberStatus;
