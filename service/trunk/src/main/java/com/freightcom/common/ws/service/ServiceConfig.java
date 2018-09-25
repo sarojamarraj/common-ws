@@ -2,8 +2,6 @@ package com.freightcom.common.ws.service;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.jeasy.rules.api.Rules;
-import org.jeasy.rules.api.RulesEngine;
-import org.jeasy.rules.core.DefaultRulesEngine;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -13,8 +11,8 @@ import org.springframework.context.annotation.PropertySources;
 import org.springframework.jms.connection.CachingConnectionFactory;
 import org.springframework.jms.core.JmsTemplate;
 
-import com.freightcom.common.ws.service.mail.rule.AddToListRule;
-import com.freightcom.common.ws.service.mail.rule.SingleEmailRule;
+import com.freightcom.common.ws.service.mail.impl.AddToListRule;
+import com.freightcom.common.ws.service.mail.impl.SingleEmailRule;
 import com.github.alexanderwe.bananaj.connection.MailChimpConnection;
 import com.microtripit.mandrillapp.lutung.MandrillApi;
 
@@ -49,22 +47,6 @@ public class ServiceConfig {
 	}
 	
 	@Bean
-	public RulesEngine rulesEngine() {
-		RulesEngine rulesEngine = new DefaultRulesEngine();
-		return rulesEngine;
-	}
-	
-	@Bean
-	public Rules mailRequestRules() {
-		SingleEmailRule singleEmailRule = new SingleEmailRule();
-		AddToListRule addToListRule = new AddToListRule();
-		Rules rules = new Rules();
-        rules.register(singleEmailRule);
-        rules.register(addToListRule);
-        return rules;
-	}
-	
-	@Bean
 	public ActiveMQConnectionFactory activeMQConnectionFactory() {
 		ActiveMQConnectionFactory activeMQConnectionFactory = new ActiveMQConnectionFactory();
 	    activeMQConnectionFactory.setBrokerURL(brokerUrl);
@@ -80,5 +62,15 @@ public class ServiceConfig {
 	@Bean
 	public JmsTemplate jmsTemplate() {
 		return new JmsTemplate(cachingConnectionFactory());
+	}
+	
+	@Bean
+	public Rules mailRequestRules() {
+		SingleEmailRule singleEmailRule = new SingleEmailRule();
+		AddToListRule addToListRule = new AddToListRule();
+		Rules rules = new Rules();
+        rules.register(singleEmailRule);
+        rules.register(addToListRule);
+        return rules;
 	}
 }

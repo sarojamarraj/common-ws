@@ -3,6 +3,8 @@ package com.freightcom.common.ws.service.mail;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import com.freightcom.common.dto.mail.MailRequest;
+
 public class MailMessageTest extends BaseMailMessageTest {
 	@Test
 	public void unmarshallSendMailRequest() {

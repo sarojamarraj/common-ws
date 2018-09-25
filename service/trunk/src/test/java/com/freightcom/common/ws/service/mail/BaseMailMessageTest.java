@@ -6,6 +6,10 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.freightcom.common.dto.mail.AddToList;
+import com.freightcom.common.dto.mail.MailRecipient;
+import com.freightcom.common.dto.mail.MailRequest;
+import com.freightcom.common.dto.mail.SendMail;
 
 public class BaseMailMessageTest {
 	protected String toJSON(MailRequest mailRequest) throws JsonProcessingException {
